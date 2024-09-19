@@ -1,45 +1,39 @@
--- Create Database
-CREATE DATABASE HealthcareSystem;
-
--- Use the database
-USE HealthcareSystem;
-
--- Create Patients Table
+-- Create Patients table
 CREATE TABLE Patients (
-    PatientID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
+    PatientID INTEGER PRIMARY KEY,  -- SQLite auto-increments INTEGER PRIMARY KEY
+    FirstName TEXT,
+    LastName TEXT,
     DateOfBirth DATE,
-    Gender VARCHAR(10),
-    ContactInfo VARCHAR(100)
+    Gender TEXT,
+    ContactInfo TEXT
 );
 
--- Create Doctors Table
+-- Create Doctors table
 CREATE TABLE Doctors (
-    DoctorID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Specialty VARCHAR(50),
-    ContactInfo VARCHAR(100)
+    DoctorID INTEGER PRIMARY KEY,  -- SQLite auto-increments INTEGER PRIMARY KEY
+    FirstName TEXT,
+    LastName TEXT,
+    Specialty TEXT,
+    ContactInfo TEXT
 );
 
--- Create Appointments Table
+-- Create Appointments table
 CREATE TABLE Appointments (
-    AppointmentID INT AUTO_INCREMENT PRIMARY KEY,
-    PatientID INT,
-    DoctorID INT,
-    AppointmentDate DATETIME,
-    ReasonForVisit VARCHAR(255),
-    Status VARCHAR(20),
+    AppointmentID INTEGER PRIMARY KEY,  -- SQLite auto-increments INTEGER PRIMARY KEY
+    PatientID INTEGER,
+    DoctorID INTEGER,
+    AppointmentDate DATE,
+    ReasonForVisit TEXT,
+    Status TEXT,
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
 );
 
--- Create MedicalRecords Table
+-- Create MedicalRecords table
 CREATE TABLE MedicalRecords (
-    RecordID INT AUTO_INCREMENT PRIMARY KEY,
-    PatientID INT,
-    DoctorID INT,
+    RecordID INTEGER PRIMARY KEY,  -- SQLite auto-increments INTEGER PRIMARY KEY
+    PatientID INTEGER,
+    DoctorID INTEGER,
     Diagnosis TEXT,
     Treatment TEXT,
     RecordDate DATE,
@@ -47,13 +41,13 @@ CREATE TABLE MedicalRecords (
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
 );
 
--- Create Prescriptions Table
+-- Create Prescriptions table
 CREATE TABLE Prescriptions (
-    PrescriptionID INT AUTO_INCREMENT PRIMARY KEY,
-    PatientID INT,
-    DoctorID INT,
-    Medication VARCHAR(100),
-    Dosage VARCHAR(50),
+    PrescriptionID INTEGER PRIMARY KEY,  -- SQLite auto-increments INTEGER PRIMARY KEY
+    PatientID INTEGER,
+    DoctorID INTEGER,
+    Medication TEXT,
+    Dosage TEXT,
     PrescriptionDate DATE,
     FOREIGN KEY (PatientID) REFERENCES Patients(PatientID),
     FOREIGN KEY (DoctorID) REFERENCES Doctors(DoctorID)
